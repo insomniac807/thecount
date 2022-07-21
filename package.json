@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^14.0.3",
+    "dotenv": "^16.0.1",
     "mathjs": "^10.6.4"
   }
 }
