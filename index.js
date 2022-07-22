@@ -10,6 +10,7 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', (message) => {
+    if(message.author.bot) return;
     console.log(message.content);
     message.channel.send(message.content);
 });
