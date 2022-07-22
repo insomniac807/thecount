@@ -1,6 +1,7 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 require('dotenv').config()
 
+const CHANNEL = process.env.CHANNEL;
 const token = process.env.BOT_TOKEN;
 
 const client = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.MessageContent]});
@@ -10,9 +11,9 @@ client.once('ready', () => {
 });
 
 client.on('messageCreate', (message) => {
-    if(message.author.bot) return;
+    if((message.author.bot) || (message.channel.name.localeCompare(CHANNEL) != 0)) return;
     console.log(message.content);
-    message.channel.send(message.content);
+    message.channel.send(`channel: ${message.channel.name}`);
 });
 
 client.login(token);
