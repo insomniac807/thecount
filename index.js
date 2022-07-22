@@ -14,7 +14,14 @@ client.once('ready', () => {
 
 client.on('messageCreate', (message) => {
     if((message.author.bot) || (message.channel.name.localeCompare(CHANNEL) != 0)) return;
-    Counter.isMathExpression(message.content) ? message.channel.send(`${evaluate(message.content)}`) : message.channel.send(`${Counter.isRoman(message.content)}`);
+    if(Counter.isValidExpression(message.content)) {
+        let value = Counter.isRoman(message.content) ? Counter.romanToInt(message.content) : evaluate(message.content);
+        console.log(value);
+        message.channel.send(`value : ${value}`);
+    }
+    else {
+        console.log("Failed");
+    }
 });
 
 client.login(token);
